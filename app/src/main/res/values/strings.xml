@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">iTunesSearch</string>
+    <string name="search_title">Search</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="remove_from_favorites">저장 취소하기</string>
+    <string name="add_to_favorites">저장하기</string>
 </resources>
