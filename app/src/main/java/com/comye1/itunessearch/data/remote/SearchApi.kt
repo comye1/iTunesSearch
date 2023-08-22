@@ -7,7 +7,7 @@ interface SearchApi {
     @GET("search")
     suspend fun searchTrack(
         @Query("term") term: String,
-        @Query("offset") page: Int,
-        @Query("limit") size: Int
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
     ): SearchResponse
 }

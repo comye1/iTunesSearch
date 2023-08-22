@@ -11,7 +11,7 @@ class SearchRepositoryImpl @Inject constructor(
 ) : SearchRepository {
     override suspend fun getSearchResult(term: String, page: Int, size: Int): Result<SearchResult> {
         val response = try {
-            searchApi.searchTrack(term = term, page = page, size = size)
+            searchApi.searchTrack(term = term, offset = page * size, limit = size)
         } catch (e: Exception) {
             return Result.failure(e)
         }
