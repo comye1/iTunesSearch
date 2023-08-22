@@ -1,7 +1,13 @@
 package com.comye1.itunessearch.data.remote
 
-import com.comye1.itunessearch.domain.SearchResult
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface SearchApi {
-    suspend fun searchTrack(term: String, page: Int, size: Int): SearchResult
+    @GET("search")
+    suspend fun searchTrack(
+        @Query("term") term: String,
+        @Query("offset") page: Int,
+        @Query("limit") size: Int
+    ): SearchResponse
 }
