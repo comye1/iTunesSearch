@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 @Database(
     entities = [
         FavoriteTrack::class
-    ], version = 1
+    ], version = 2
 )
 abstract class FavoritesDatabase: RoomDatabase() {
     abstract fun favoritesDao(): FavoritesDao

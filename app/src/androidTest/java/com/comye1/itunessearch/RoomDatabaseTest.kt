@@ -51,8 +51,8 @@ class RoomDatabaseTest {
         testScope.runTest {
             dao.insert(track)
             var byId = dao.findTrack(track.id)
-            assertThat(byId, equalTo(track))
-            dao.delete(track)
+            assertThat(byId, equalTo(track.copy(key = byId!!.key)))
+            dao.delete(1L)
             byId = dao.findTrack(track.id)
             assertThat(byId, equalTo(null))
         }

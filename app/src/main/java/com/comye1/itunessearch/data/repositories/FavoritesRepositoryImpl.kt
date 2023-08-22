@@ -43,17 +43,9 @@ class FavoritesRepositoryImpl @Inject constructor(
         return Result.success(true)
     }
 
-    override suspend fun removeFromFavorites(track: Track): Result<Boolean> {
+    override suspend fun removeFromFavorites(trackId: Long): Result<Boolean> {
         try {
-            dao.delete(
-                FavoriteTrack(
-                    id = track.id,
-                    artworkUrl = track.artworkUrl,
-                    trackName = track.trackName,
-                    collectionName = track.collectionName,
-                    artistName = track.artistName,
-                )
-            )
+            dao.delete(trackId)
         } catch (e: Exception) {
             return Result.failure(e)
         }
