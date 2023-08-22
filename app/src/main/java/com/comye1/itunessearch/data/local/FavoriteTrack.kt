@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "favorites")
 data class FavoriteTrack(
     @PrimaryKey val id: Long,
     @ColumnInfo(name = "artwork_url") val artworkUrl: String,
