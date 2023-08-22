@@ -12,7 +12,7 @@ import com.comye1.itunessearch.domain.Track
 import com.comye1.itunessearch.ui.components.TrackItem
 
 @Composable
-fun FavoriteTrackItem(modifier: Modifier = Modifier, track: Track, removeFromFavorites: (Long) -> Unit) {
+fun FavoriteTrackItem(modifier: Modifier = Modifier, track: Track, removeFromFavorites: (Track) -> Unit) {
     TrackItem(
         modifier = modifier,
         artworkUrl = track.artworkUrl,
@@ -20,7 +20,7 @@ fun FavoriteTrackItem(modifier: Modifier = Modifier, track: Track, removeFromFav
         collectionName = track.collectionName,
         artistName = track.artistName
     ) {
-        IconButton(onClick = { removeFromFavorites(track.id) }) {
+        IconButton(onClick = { removeFromFavorites(track) }) {
             Icon(
                 imageVector = Icons.Default.Clear,
                 contentDescription = stringResource(id = R.string.remove_from_favorites)

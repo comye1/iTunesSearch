@@ -23,49 +23,58 @@ fun TrackItem(
     artistName: String,
     iconButton: @Composable () -> Unit
 ) {
-    Card(onClick = { /*TODO*/ }) {
+    Card(
+        modifier = modifier,
+        onClick = { }
+    ) {
         Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .height(144.dp)
-                .padding(16.dp),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.Bottom
         ) {
-            SquareImage(
-                imgUrl = artworkUrl,
-                description = trackName,
-                modifier = Modifier.fillMaxHeight()
-            )
-            Spacer(modifier = Modifier.width(16.dp)) // TODO Dimen
-            Column(
+            Row(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxHeight(),
-                verticalArrangement = Arrangement.SpaceBetween
+                    .height(92.dp)
+                    .padding(top = 16.dp, bottom = 16.dp, start = 16.dp),
+                verticalAlignment = Alignment.Bottom
             ) {
-                Text(
-                    text = trackName,
-                    style = MaterialTheme.typography.titleMedium,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                SquareImage(
+                    imgUrl = artworkUrl,
+                    description = trackName,
+                    modifier = Modifier.fillMaxHeight()
                 )
-                Spacer(modifier = Modifier.height(4.dp)) // TODO Dimen
-                Text(
-                    text = collectionName,
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Spacer(modifier = Modifier.height(4.dp)) // TODO Dimen
-                Text(
-                    text = artistName,
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+                Spacer(modifier = Modifier.width(16.dp)) // TODO Dimen
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight(),
+                    verticalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = trackName,
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Spacer(modifier = Modifier.height(4.dp)) // TODO Dimen
+                    Text(
+                        text = collectionName,
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Spacer(modifier = Modifier.height(4.dp)) // TODO Dimen
+                    Text(
+                        text = artistName,
+                        style = MaterialTheme.typography.bodySmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
-            Spacer(modifier = Modifier.width(8.dp)) // TODO Dimen
-            iconButton()
+            Box(modifier = Modifier.padding(4.dp)) {
+                iconButton()
+            }
         }
     }
 }

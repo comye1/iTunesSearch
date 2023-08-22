@@ -19,8 +19,8 @@ import coil.request.ImageRequest
 @Composable
 fun SquareImage(
     modifier: Modifier = Modifier,
-    imgUrl: String,
-    description: String
+    imgUrl: String?,
+    description: String?
 ) {
     Box(
         modifier = modifier.aspectRatio(1f),
