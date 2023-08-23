@@ -7,4 +7,5 @@
     <string name="favorites_no_result">저장된 항목이 없습니다.</string>
     <string name="search_no_result">검색 결과가 없습니다.</string>
     <string name="error_message">에러가 발생했습니다.</string>
+    <string name="retry">다시 시도하기</string>
 </resources>

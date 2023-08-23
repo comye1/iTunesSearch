@@ -1,6 +1,7 @@
 package com.comye1.itunessearch.ui.screens.search
 
 import android.util.Log
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.comye1.itunessearch.domain.FavoritesRepository
@@ -9,36 +10,57 @@ import com.comye1.itunessearch.domain.SearchRepository
 import com.comye1.itunessearch.domain.Track
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchRepository: SearchRepository,
+    searchRepository: SearchRepository,
     private val favoritesRepository: FavoritesRepository
 ) : ViewModel() {
 
-    lateinit var pagingManager: SearchPagingManager
+    private val _searchState = MutableStateFlow(SearchState(term = "greenday"))
+    val searchState: StateFlow<SearchState> = _searchState
+
+    private val pagingManager = SearchPagingManager(
+        searchRepository,
+        favoritesRepository,
+        scope = viewModelScope
+    )
 
     val pagingState
         get() = pagingManager.state
 
-    fun search(term: String) {
-        pagingManager = SearchPagingManager(
-            searchRepository,
-            favoritesRepository,
-            term = term,
-            scope = viewModelScope
-        )
+    val pagingFlow
+        get() = pagingManager.flow
 
-        pagingManager.loadNextPage()
+    fun setTerm(term: String) {
+        _searchState.update {
+            SearchState(term)
+        }
     }
 
-    fun loadNextPage() {
-        Log.d(TAG, "loadNextPage")
-        pagingManager.loadNextPage()
+    /**
+     * 현재 검색어로 pagingManager를 초기화한다.
+     */
+    fun search() {
+        pagingManager.initialize(searchState.value.term)
     }
 
+    /**
+     * 현재 필요한 페이지를 불러온다.
+     */
+    fun loadPage() {
+        Log.d(TAG, "loadPage")
+        pagingManager.loadPage()
+    }
+
+    /**
+     * Favorites에 추가한다.
+     */
     fun addToFavorites(track: Track) {
         viewModelScope.launch(Dispatchers.IO) {
             favoritesRepository.addToFavorites(track)
@@ -47,6 +69,9 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Favorites에서 삭제한다.
+     */
     fun removeFavoriteTrack(track: Track) {
         viewModelScope.launch(Dispatchers.IO) {
             favoritesRepository.removeFromFavorites(track.id)
@@ -57,10 +82,15 @@ class SearchViewModel @Inject constructor(
 
     init {
         Log.d(TAG, "init")
-        search("greenday")
+        search()
     }
 
     companion object {
         private const val TAG = "SearchViewModel"
     }
 }
+
+@Immutable
+data class SearchState(
+    val term: String = ""
+)

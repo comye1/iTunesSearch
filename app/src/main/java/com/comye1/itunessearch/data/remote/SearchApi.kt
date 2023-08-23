@@ -8,6 +8,7 @@ interface SearchApi {
     suspend fun searchTrack(
         @Query("term") term: String,
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int
+        @Query("limit") limit: Int,
+        @Query("entity") entity: String, // song으로 고정
     ): SearchResponse
 }

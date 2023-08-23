@@ -16,23 +16,40 @@ import kotlinx.coroutines.launch
 class SearchPagingManager(
     private val searchRepository: SearchRepository,
     private val favoriteRepository: FavoritesRepository,
-    private val scope: CoroutineScope,
-    term: String
+    private val scope: CoroutineScope
 ) {
 
     private val _flow = MutableStateFlow<List<Track>>(listOf())
     val flow: StateFlow<List<Track>> = _flow
 
-    private var _state by mutableStateOf(PagingState(term))
+    private var _state by mutableStateOf(PagingState(term = ""))
     val state
         get() = _state
 
     private val favorites = hashSetOf<Long>()
 
-    fun loadNextPage() {
+    /**
+     * 새로운 검색 결과로 초기화한다.
+     */
+    fun initialize(term: String) {
+        term.trim().let {
+            // 공백, 동일 검색어 체크
+            if (it.isNotEmpty() && it != state.term) {
+                _state = PagingState(term = term)
+                _flow.update { listOf() }
+                loadPage()
+            }
+        }
+    }
+
+    /**
+     * 이번 페이지를 불러온다. (에러인 경우 페이지가 유지되므로 loadPage로 재시도)
+     */
+    fun loadPage() {
         scope.launch {
             _state = state.copy(loading = true, error = false)
-            Log.d("needLoad", "current page : ${state.currentPage}")
+            Log.d(TAG, "term : ${state.term}")
+            Log.d(TAG, "current page : ${state.currentPage}")
             searchRepository.getSearchResult(
                 term = state.term,
                 page = state.currentPage,
@@ -64,6 +81,9 @@ class SearchPagingManager(
         }
     }
 
+    /**
+     * favorites 목록을 collect하여 track 리스트의 favorite 여부를 업데이트한다.
+     */
     private fun collectFavorites() {
         scope.launch(Dispatchers.IO) {
             favoriteRepository.getFavoriteTracks().collectLatest { favoriteList ->
@@ -77,6 +97,9 @@ class SearchPagingManager(
         }
     }
 
+    /**
+     * track 리스트의 favorite 여부를 업데이트한다.
+     */
     private fun filterFavorites() {
         _flow.update {
             it.map { track ->
