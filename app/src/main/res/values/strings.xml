@@ -4,4 +4,7 @@
     <string name="favorites_title">Favorites</string>
     <string name="remove_from_favorites">저장 취소하기</string>
     <string name="add_to_favorites">저장하기</string>
+    <string name="favorites_no_result">저장된 항목이 없습니다.</string>
+    <string name="search_no_result">검색 결과가 없습니다.</string>
+    <string name="error_message">에러가 발생했습니다.</string>
 </resources>

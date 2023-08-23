@@ -34,7 +34,7 @@ fun TrackItem(
             Row(
                 modifier = Modifier
                     .weight(1f)
-                    .height(92.dp)
+                    .height(IntrinsicSize.Min)
                     .padding(top = 16.dp, bottom = 16.dp, start = 16.dp),
                 verticalAlignment = Alignment.Bottom
             ) {
@@ -47,7 +47,7 @@ fun TrackItem(
                 Column(
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxHeight(),
+                        .wrapContentHeight(),
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
