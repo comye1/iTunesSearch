@@ -57,32 +57,6 @@ fun Search(viewModel: SearchViewModel) {
                     removeFromFavorites = viewModel::removeFavoriteTrack
                 )
             }
-            item {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    if (viewModel.pagingState.loading) {
-                        CircularProgressIndicator()
-                    } else if (!viewModel.pagingState.isLastPage) {
-                        // 마지막 페이지가 아닌데 LazyColumn의 마지막 아이템에 다다른 경우 다음 페이지를 요청한다.
-                        SideEffect {
-                            Log.d("Search", "loading next page")
-                            viewModel.loadPage()
-                        }
-                    }
-                }
-            }
-            if (!viewModel.pagingState.loading && tracks.isEmpty()) {
-                item {
-                    Notice(
-                        modifier = Modifier.fillMaxWidth(),
-                        message = stringResource(id = R.string.search_no_result)
-                    )
-                }
-            }
             if (viewModel.pagingState.error) {
                 item {
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = CenterHorizontally) {
@@ -90,9 +64,37 @@ fun Search(viewModel: SearchViewModel) {
                             modifier = Modifier.fillMaxWidth(),
                             message = stringResource(id = R.string.error_message)
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
                         Button(onClick = { viewModel.loadPage() }) {
                             Text(text = stringResource(id = R.string.retry))
+                        }
+                    }
+                }
+            }
+            else if (!viewModel.pagingState.loading && tracks.isEmpty()) {
+                item {
+                    Notice(
+                        modifier = Modifier.fillMaxWidth(),
+                        message = stringResource(id = R.string.search_no_result)
+                    )
+                }
+            }
+            else {
+                item {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        if (viewModel.pagingState.loading) {
+                            CircularProgressIndicator()
+                        } else if (!viewModel.pagingState.isLastPage) {
+                            // 마지막 페이지가 아닌데 LazyColumn의 마지막 아이템에 다다른 경우 다음 페이지를 요청한다.
+                            SideEffect {
+                                Log.d("Search", "loading next page")
+                                viewModel.loadPage()
+                            }
                         }
                     }
                 }
