@@ -1,14 +1,14 @@
 package com.comye1.itunessearch.ui.screens.search
 
 import android.util.Log
-import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.comye1.itunessearch.domain.*
+import com.comye1.itunessearch.domain.FavoritesRepository
+import com.comye1.itunessearch.domain.SearchPagingManager
+import com.comye1.itunessearch.domain.SearchRepository
+import com.comye1.itunessearch.domain.Track
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,11 +23,11 @@ class SearchViewModel @Inject constructor(
     val pagingState
         get() = pagingManager.state
 
-    fun search() {
+    fun search(term: String) {
         pagingManager = SearchPagingManager(
             searchRepository,
             favoritesRepository,
-            term = "greenday",
+            term = term,
             scope = viewModelScope
         )
 
@@ -57,7 +57,7 @@ class SearchViewModel @Inject constructor(
 
     init {
         Log.d(TAG, "init")
-        search()
+        search("greenday")
     }
 
     companion object {

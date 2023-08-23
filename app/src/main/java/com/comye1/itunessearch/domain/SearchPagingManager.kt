@@ -1,6 +1,7 @@
 package com.comye1.itunessearch.domain
 
 import android.util.Log
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -93,6 +94,7 @@ class SearchPagingManager(
     }
 }
 
+@Immutable
 data class PagingState(
     val term: String = "",
     val currentPage: Int = 0,
