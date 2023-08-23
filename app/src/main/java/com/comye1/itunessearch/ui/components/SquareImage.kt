@@ -1,9 +1,11 @@
 package com.comye1.itunessearch.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,8 +25,8 @@ fun SquareImage(
     description: String?
 ) {
     Box(
-        modifier = modifier.aspectRatio(1f),
-//            .background(MaterialTheme.colors.onPrimary),
+        modifier = modifier.aspectRatio(1f)
+            .background(Color.LightGray),
         contentAlignment = Alignment.Center
     ) {
         AsyncImage(
