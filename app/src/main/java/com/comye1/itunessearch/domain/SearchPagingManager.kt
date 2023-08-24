@@ -117,6 +117,9 @@ class SearchPagingManager(
     }
 }
 
+/**
+ * 페이징 상태 - 검색어, 현재 페이지, 마지막 페이지 여부, 로딩 여부, 에러 여부
+ */
 @Immutable
 data class PagingState(
     val term: String = "",

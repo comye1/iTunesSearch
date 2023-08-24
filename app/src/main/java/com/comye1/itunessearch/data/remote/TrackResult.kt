@@ -1,5 +1,8 @@
 package com.comye1.itunessearch.data.remote
 
+/**
+ * Search 요청 응답 아이템 모델
+ */
 data class TrackResult(
     val artistId: Long,
     val artistName: String?,

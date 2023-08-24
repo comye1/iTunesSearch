@@ -13,6 +13,9 @@ import com.comye1.itunessearch.R
 import com.comye1.itunessearch.domain.Track
 import com.comye1.itunessearch.ui.components.Notice
 
+/**
+ * Favorites 목록 조회 결과 composable
+ */
 @Composable
 fun FavoritesResult(state: FavoritesState, removeFavoriteTrack: (Track) -> Unit) {
     LazyColumn(

@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.comye1.itunessearch.data.local.FavoriteTrack
+import com.comye1.itunessearch.data.local.TrackEntity
 import com.comye1.itunessearch.data.local.FavoritesDao
 import com.comye1.itunessearch.data.local.FavoritesDatabase
 import kotlinx.coroutines.test.*
@@ -41,7 +41,7 @@ class RoomDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun writeTrackAndReadInList() {
-        val track = FavoriteTrack(
+        val track = TrackEntity(
             id = 1L,
             artworkUrl = "artwork",
             trackName = "track",

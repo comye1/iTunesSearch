@@ -13,6 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.comye1.itunessearch.R
 
+/**
+ * Track 공통 composable
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrackItem(

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [
-        FavoriteTrack::class
+        TrackEntity::class
     ], version = 2
 )
 abstract class FavoritesDatabase: RoomDatabase() {

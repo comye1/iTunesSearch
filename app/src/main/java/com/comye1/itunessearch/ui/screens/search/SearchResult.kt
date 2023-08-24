@@ -45,7 +45,7 @@ fun SearchResult(
                 // onClick
             }
         }
-        if (pagingState.error) {
+        if (pagingState.error) { // 에러 발생
             item {
                 Column(
                     Modifier.fillMaxWidth(),
@@ -56,12 +56,12 @@ fun SearchResult(
                         message = stringResource(id = R.string.error_message)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = loadPage) {
+                    Button(onClick = loadPage) { // 재시도 버튼 -> 해당 페이지를 다시 요청
                         Text(text = stringResource(id = R.string.retry))
                     }
                 }
             }
-        } else if (!pagingState.loading && tracks.isEmpty()) {
+        } else if (!pagingState.loading && tracks.isEmpty()) { // 검색 결과 없는 경우
             item {
                 Notice(
                     modifier = Modifier.fillMaxWidth(),

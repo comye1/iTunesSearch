@@ -20,6 +20,7 @@ fun Search(viewModel: SearchViewModel) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+        // 검색창
         SearchBar(
             modifier = Modifier.padding(16.dp),
             searchWord = state.term,
@@ -28,7 +29,7 @@ fun Search(viewModel: SearchViewModel) {
             focusManager.clearFocus()
             viewModel.search()
         }
-
+        // 검색 결과
         SearchResult(
             modifier = Modifier.fillMaxSize(),
             tracks = tracks,

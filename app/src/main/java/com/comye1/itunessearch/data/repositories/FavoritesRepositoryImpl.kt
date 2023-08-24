@@ -1,7 +1,7 @@
 package com.comye1.itunessearch.data.repositories
 
 import android.util.Log
-import com.comye1.itunessearch.data.local.FavoriteTrack
+import com.comye1.itunessearch.data.local.TrackEntity
 import com.comye1.itunessearch.data.local.FavoritesDao
 import com.comye1.itunessearch.domain.FavoritesRepository
 import com.comye1.itunessearch.domain.Track
@@ -30,7 +30,7 @@ class FavoritesRepositoryImpl @Inject constructor(
     override suspend fun addToFavorites(track: Track): Result<Boolean> {
         try {
             dao.insert(
-                FavoriteTrack(
+                TrackEntity(
                     id = track.id,
                     artworkUrl = track.artworkUrl,
                     trackName = track.trackName,
