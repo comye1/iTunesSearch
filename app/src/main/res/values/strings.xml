@@ -8,4 +8,6 @@
     <string name="search_no_result">검색 결과가 없습니다.</string>
     <string name="error_message">에러가 발생했습니다.</string>
     <string name="retry">다시 시도하기</string>
+    <string name="search">검색하기</string>
+    <string name="enter_search_term">검색어 입력</string>
 </resources>

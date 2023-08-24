@@ -12,13 +12,19 @@ import com.comye1.itunessearch.domain.Track
 import com.comye1.itunessearch.ui.components.TrackItem
 
 @Composable
-fun FavoriteTrackItem(modifier: Modifier = Modifier, track: Track, removeFromFavorites: (Track) -> Unit) {
+fun FavoriteTrackItem(
+    modifier: Modifier = Modifier,
+    track: Track,
+    removeFromFavorites: (Track) -> Unit,
+    onClick: () -> Unit,
+) {
     TrackItem(
         modifier = modifier,
         artworkUrl = track.artworkUrl,
         trackName = track.trackName,
         collectionName = track.collectionName,
-        artistName = track.artistName
+        artistName = track.artistName,
+        onClick = onClick
     ) {
         IconButton(onClick = { removeFromFavorites(track) }) {
             Icon(

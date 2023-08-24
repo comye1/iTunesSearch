@@ -6,17 +6,16 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.comye1.itunessearch.R
 import com.comye1.itunessearch.ui.theme.ITunesSearchTheme
 
 @Preview
@@ -68,7 +67,8 @@ fun SearchTextField(
         shape = CircleShape,
         colors = TextFieldDefaults.textFieldColors(
             focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
+            unfocusedIndicatorColor = Color.Transparent,
+            containerColor = MaterialTheme.colorScheme.primaryContainer
         )
     )
 }
@@ -81,8 +81,7 @@ fun SearchButton(modifier: Modifier = Modifier, onSearch: () -> Unit) {
     ) {
         Icon(
             imageVector = Icons.Default.Search,
-            contentDescription = "검색하기",
-            tint = Color.Gray
+            contentDescription = stringResource(id = R.string.search),
         )
     }
 }

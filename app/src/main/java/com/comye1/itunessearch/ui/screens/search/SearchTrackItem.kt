@@ -17,14 +17,16 @@ fun SearchTrackItem(
     modifier: Modifier = Modifier,
     track: Track,
     addToFavorites: (Track) -> Unit,
-    removeFromFavorites: (Track) -> Unit
+    removeFromFavorites: (Track) -> Unit,
+    onClick: () -> Unit,
 ) {
     TrackItem(
         modifier = modifier,
         artworkUrl = track.artworkUrl,
         trackName = track.trackName,
         collectionName = track.collectionName,
-        artistName = track.artistName
+        artistName = track.artistName,
+        onClick = onClick
     ) {
         if (track.favorite) {
             IconButton(onClick = { removeFromFavorites(track) }) {

@@ -21,11 +21,12 @@ fun TrackItem(
     trackName: String,
     collectionName: String,
     artistName: String,
+    onClick: () -> Unit,
     iconButton: @Composable () -> Unit
 ) {
     Card(
         modifier = modifier,
-        onClick = { }
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -43,7 +44,7 @@ fun TrackItem(
                     description = trackName,
                     modifier = Modifier.fillMaxHeight()
                 )
-                Spacer(modifier = Modifier.width(16.dp)) // TODO Dimen
+                Spacer(modifier = Modifier.width(16.dp))
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -56,14 +57,14 @@ fun TrackItem(
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
-                    Spacer(modifier = Modifier.height(4.dp)) // TODO Dimen
+                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = collectionName,
                         style = MaterialTheme.typography.bodyMedium,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
-                    Spacer(modifier = Modifier.height(4.dp)) // TODO Dimen
+                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = artistName,
                         style = MaterialTheme.typography.bodySmall,
@@ -87,7 +88,8 @@ fun TrackItemPreview() {
             artworkUrl = "https://i.pinimg.com/originals/a4/b6/fc/a4b6fc000e66d3e07ebea1d9a9bffa33.jpg",
             trackName = "Upside Down aaaaaaaa ekekekek",
             collectionName = "Sing-a-Longs and Lullabies for the Film Curious George",
-            artistName = "Jack Johnson"
+            artistName = "Jack Johnson",
+            onClick = {}
         ) {
             IconButton(onClick = { }) {
                 Icon(
