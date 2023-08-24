@@ -1,5 +1,6 @@
 package com.comye1.itunessearch.data.repositories
 
+import android.util.Log
 import com.comye1.itunessearch.data.local.FavoriteTrack
 import com.comye1.itunessearch.data.local.FavoritesDao
 import com.comye1.itunessearch.domain.FavoritesRepository
@@ -38,6 +39,7 @@ class FavoritesRepositoryImpl @Inject constructor(
                 )
             )
         } catch (e: Exception) {
+            Log.d("FavoritesRepository", e.localizedMessage)
             return Result.failure(e)
         }
         return Result.success(true)
@@ -47,6 +49,7 @@ class FavoritesRepositoryImpl @Inject constructor(
         try {
             dao.delete(trackId)
         } catch (e: Exception) {
+            Log.d("FavoritesRepository", e.localizedMessage)
             return Result.failure(e)
         }
         return Result.success(true)
