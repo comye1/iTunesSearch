@@ -63,7 +63,7 @@ class SearchPagingManager(
                         trackName = result.trackName ?: "(트랙 정보 없음)",
                         artistName = result.artistName ?: "(아티스트 정보 없음)",
                         collectionName = result.collectionName ?: "(컬렉션 정보 없음)",
-                        favorite = favorites.contains(result.trackId)
+                        favorite = result.trackId in favorites
                     )
                 }.also { newList ->
                     _flow.update { list ->
@@ -113,7 +113,7 @@ class SearchPagingManager(
     }
 
     companion object {
-        private const val TAG = "SearchPagingSource"
+        private const val TAG = "SearchPagingManager"
     }
 }
 
