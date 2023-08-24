@@ -40,12 +40,13 @@ AppModule - HttpClient, ApiService, Database, SearchRepository, FavorietesReposi
 
 ## pagination 구현
 
-이전에 Paging Compose 라이브러리를 사용하였을 때, 각 아이템의 상태를 변경하는데 어려움이 있었기 때문에 직접 구현하였다.
+이전에 Paging Compose 라이브러리를 사용하였을 때, 각 아이템의 상태를 변경하는데 어려움이 있었기 때문에 직접 구현하였다.\
 요구사항으로는 
 - 페이지가 로드될 때 favorites 목록과 매핑되어야 한다.
 - 이전에 로드된 페이지 데이터가 유지되어야 한다.
 - favorites 목록을 실시간으로 유지하고, 변동이 있을 경우 모든 페이지 데이터에 반영되어야 한다.
-- 새로운 term으로 검색이 요청되면, 페이지 데이터 및 페이징 상태가 초기화 되어야 한다./
+- 새로운 term으로 검색이 요청되면, 페이지 데이터 및 페이징 상태가 초기화 되어야 한다.
+
 를 만족하도록 구현하였고, 
 추가적으로 특정 페이지에서 에러 발생시 사용자가 Retry 버튼을 통해 해당 페이지를 다시 요청할 수 있도록 하였다.
 
@@ -59,7 +60,8 @@ AppModule - HttpClient, ApiService, Database, SearchRepository, FavorietesReposi
   - data (Repository 구현체)
   - network (data/remote)
   - local (data/local)
--feature
+
+- feature
   - search
   - favorites
 
