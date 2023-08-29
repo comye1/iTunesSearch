@@ -4,7 +4,7 @@
 
 - Http client : OkHttp3, Retrofit2
 - UI : Jetpack Compose, MVVM, UDF
-- 검색결과 Paging : Paging3 Compose
+- 검색결과 Paging : 직접 구현
 - 이미지 로딩 : Coil
 - Favorites 저장 : Jetpack Room Database
 - 비동기 프로그래밍 : Coroutines
